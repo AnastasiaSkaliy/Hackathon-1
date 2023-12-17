@@ -82,3 +82,16 @@ class DataRepository():
         result = cursor.fetchall()
 
         return [Mission(*mission) for mission in result]
+    
+    def add_volunteer(self, first_name, last_name, phone, mission_id, mission):
+        cursor = conn.cursor()
+        try:
+            cursor.execute(
+                'INSERT INTO volunteers (first_name, last_name, phone, mission_id, mission) VALUES (%s, %s, %s, %s, %s)',
+                (first_name, last_name, phone, mission_id, mission)
+            )
+            conn.commit()
+            print("Volunteer information inserted successfully!")
+        except psycopg2.Error as e:
+            conn.rollback()
+            print("Error inserting volunteer information:", e)

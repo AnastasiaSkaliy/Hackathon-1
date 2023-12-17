@@ -5,6 +5,7 @@ from volunteer_repository import Mission
 from volunteer_repository import Branch
 
 
+
 matcher = MissionMatcher()
 data = DataRepository()
 
@@ -162,15 +163,7 @@ class SystemRunner:
       
 
     def run(self):
-        locations_id_to_search = []
-        mission_id = []
-
-        missions = data.get_missions()
-  
         locations = data.get_locations()
-        # print(locations)
-        branch = data.get_branches()
-        # print(branch)
 
         age = self.get_age()
         r = matcher.validate_age(age)
@@ -201,42 +194,34 @@ class SystemRunner:
         for i in result:
             print(f"{i.mission_id},{i.mission} {i.mission_description}")
 
-    # def add_volunteer(self, first_name, last_name, phone, mission_id, mission):
-    #     conn = psycopg2.connect(
-    #         dbname  ='Volunteer_Matching_System',
-    #         user ='postgres',
-    #         host = 'localhost',
-    #         port ='5432'
-    #     )
-    #     cursor = conn.cursor()
-    #     try:
-    #         cursor.execute(
-    #             'INSERT INTO Volunteers (first_name, last_name, phone, mission_id, mission) VALUES (%s, %s, %s, %s, %s)',
-    #             (first_name, last_name, phone, mission_id, mission)
-    #         )
-    #         conn.commit()
-    #         print("Volunteer information inserted successfully!")
-    #     except psycopg2.Error as e:
-    #         conn.rollback()
-    #         print("Error inserting volunteer information:", e)
-    #     finally:
-    #         cursor.close()
-    #         conn.close()
-    # def ask_volunteering(self, missions):
-    #     for mission in missions:
-    #         answer = input(f"Would you like to volunteer for one of these missions? (yes/no): ").lower()
-    #         if answer == "yes":
-    #             mission_id = input("Enter the ID of the mission you choose: ")
-    #             name = input("Enter your first name: ")
-    #             last_name = input("Enter your last name: ")
-    #             phone = input("Enter your phone number: ")
-    #         elif answer == "no":
-    #             break
-    #         else:
-    #             print("Please answer with 'yes' or 'no'.")    
-    # ask = SystemRunner()                                        
-    # ask.ask_volunteering(missions)
-    # ask.add_volunteer(missions)
+        user = self.ask_volunteering(result)
+        print(user)
+        for i in result:
+            if i.mission_id == int(user['mission_id']):
+                data.add_volunteer(user['name'], user['last_name'], user['phone'], i.mission_id, i.mission)
+        
+
+
+
+    
+    def ask_volunteering(self, missions):
+        
+        answer = input(f"Would you like to volunteer for one of these missions? (yes/no): ").lower()
+        if answer == "yes":
+            mission_id = input("Enter the ID of the mission you choose: ")
+            name = input("Enter your first name: ")
+            last_name = input("Enter your last name: ")
+            phone = input("Enter your phone number: ")
+        elif answer == "no":
+            return {}
+           
+        return {
+            'mission_id': mission_id,
+            'name': name,
+            'last_name': last_name,
+            'phone': phone
+        } 
+
 
 
 r = SystemRunner()
