@@ -1,3 +1,5 @@
+#In this file, I inserted all the data into all of the tables in the database.
+
 import psycopg2
 import random
 
@@ -39,7 +41,7 @@ cursor = conn.cursor()
 # cursor.close()
 # conn.close()
 
-#insert data to branches table
+#insert data to branches table with random phone number
 # branches_data = [
 #     (1, 1, 'Branch Tel Aviv', 'Tel Aviv'),
 #     (2, 2, 'Branch Jerusalem', 'Jerusalem'),

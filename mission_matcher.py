@@ -1,3 +1,7 @@
+#This file builds all missions
+#This file receives all the user's choices and searches for the right missions
+# after applying all the filters (using the volunteer_repository file).
+
 from volunteer_repository import DataRepository
 
 data = DataRepository()

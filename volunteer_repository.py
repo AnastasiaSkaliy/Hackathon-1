@@ -1,3 +1,7 @@
+#volunteer_repository is connected to sql data base
+#In this file, I created a connection to the database.
+#Then I added a function to all methods that will search for the requested item within each method. Like filter for my data base.
+
 from dataclasses import dataclass
 import psycopg2
 
@@ -82,7 +86,8 @@ class DataRepository():
         result = cursor.fetchall()
 
         return [Mission(*mission) for mission in result]
-    
+ 
+ #after the matching process, we add a new volunteer to the 'volunteers' table   
     def add_volunteer(self, first_name, last_name, phone, mission_id, mission):
         cursor = conn.cursor()
         try:

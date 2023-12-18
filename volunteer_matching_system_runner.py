@@ -1,10 +1,11 @@
+#The main file - the runner of the entire system. 
+#In this file I've written the algorithm detailing how the program searches for the right mission based on the user's choices
+
 from mission_matcher import MissionMatcher
 from volunteer_repository import DataRepository
 from volunteer_repository import Location
 from volunteer_repository import Mission
 from volunteer_repository import Branch
-
-
 
 matcher = MissionMatcher()
 data = DataRepository()
@@ -200,9 +201,6 @@ class SystemRunner:
             if i.mission_id == int(user['mission_id']):
                 data.add_volunteer(user['name'], user['last_name'], user['phone'], i.mission_id, i.mission)
         
-
-
-
     
     def ask_volunteering(self, missions):
         

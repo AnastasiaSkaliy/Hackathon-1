@@ -1,3 +1,6 @@
+#I've added the weather for all my districts.
+#You can choose any city from the 'locations' table, and it will display the weather there.
+
 import requests
 
 class WeatherData:
@@ -22,11 +25,10 @@ class WeatherData:
         else:
             return f"Failed to fetch weather data for {district}. Error: {response.status_code}"
 
-# Usage:
-api_key = '9fc6732ac540b661b319cb11ec5cb076'  # Replace with your OpenWeatherMap API key
+api_key = '9fc6732ac540b661b319cb11ec5cb076' 
 israel_weather = WeatherData(api_key)
 
-district = 'Tel Aviv'  # Replace with the district you want to fetch weather data for
+district = 'Tel Aviv'  # we can check any city of the district(from Table locations) we want to fetch weather data for
 weather_data = israel_weather.get_weather(district)
 
 if isinstance(weather_data, dict):
