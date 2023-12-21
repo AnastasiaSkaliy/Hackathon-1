@@ -1,0 +1,13 @@
+Anastacia: Volunteers matching
+Ellegant and pythonic project!
+The structure is well organized, the code is clean and easy to follow.
+You implemented OOP in the best way, using classes and decorators, connecting the files like a pro!
+I love that you used all the concepts that we learned (besides JSON), even adding a weather API.
+That's the mindset!
+Congrats! It is a really beautiful and professional project!
+
+Python OOP:10/10
+Modules: 10/10
+Database:10/10
+JSON/API:8/10
+Overall: 9.5
